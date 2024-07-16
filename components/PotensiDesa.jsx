@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Eksplorasi = () => {
   return (
-    <section className="py-8 flex items-center mt-24 px-10 py-24 bg-gradient-to-r from-blue-500 to-blue-700" id="eksplorasi">
+    <section className="flex items-center mt-24 px-4 py-24 bg-gradient-to-tr from-blue-500 to-blue-700" id="eksplorasi">
       <div className="container mx-auto text-center">
         <h3 className="text-3xl font-bold mb-10 text-white" data-aos="zoom-in">Eksplorasi</h3>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
@@ -11,7 +11,7 @@ const Eksplorasi = () => {
             className="bg-white shadow-lg rounded-lg px-8 py-6 hover:shadow-2xl transition-shadow duration-300 my-4 transform hover:-translate-y-2"
             data-aos="fade-left"
           >
-            <div className="p-6">
+            <div className="p-2 sm:p-6">
               <h3 className="text-2xl font-bold text-blue-700 mb-4">Berita</h3>
               <div className="p-6">
                 <img
@@ -48,7 +48,7 @@ const Eksplorasi = () => {
             className="bg-white shadow-lg rounded-lg px-8 py-6 hover:shadow-2xl transition-shadow duration-300 my-4 transform hover:-translate-y-2"
             data-aos="fade-right"
           >
-            <div className="p-6">
+            <div className="p-2 sm:p-6">
               <h3 className="text-2xl font-bold text-blue-700 mb-4">UMKM</h3>
               <div className="p-6">
                 <img

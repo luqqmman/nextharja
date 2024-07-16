@@ -22,7 +22,7 @@ export default function UmkmDetail({ params }) {
   }
 
   return (
-    <div className="container mx-auto my-10 bg-white shadow-md rounded p-10 hover:shadow-lg transition-shadow duration-300">
+    <div className="container mx-auto bg-white shadow-md rounded p-8 hover:shadow-lg transition-shadow duration-300">
       <div className="bg-white overflow-hidden">
         {umkm.imageUrl && (
           <img src={umkm.imageUrl} alt={umkm.title} className="w-full h-96 object-cover" />

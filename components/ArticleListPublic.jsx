@@ -24,20 +24,20 @@ export default function ArticleList() {
   }
 
   return (
-    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
       {articles.map((article) => (
         <div key={article.id} className="bg-white shadow-md rounded hover:shadow-lg transition-shadow duration-300 mx-4 sm:mx-0">
           {article.imageUrl && (
-            <img src={article.imageUrl} alt={article.title} className="w-full h-48 object-cover" />
+            <img src={article.imageUrl} alt={article.title} className="w-full h-64 object-cover" />
           )}
           <div className="p-6">
             <h2 className="text-xl font-bold mb-2">{article.title}</h2>
-            <p className="text-gray-700 mb-4">{article.content.substring(0, 100)}...</p>
+            <p className="text-gray-700 mb-4">{article.content.substring(0, 200)}...</p>
             <Link 
                 href={`/public/articles/${article.id}`}
                 className="text-blue-500 hover:text-blue-700 font-bold"
             >
-              Read More
+              Baca Selengkapnya
             </Link>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Profile = () => {
     return (
-        <section className="py-8 flex items-center mt-32 mb-24 p-10">
+        <section className="flex items-center mt-32 mb-24 py-10 px-4">
             <div className="container mx-auto text-center">
                 <h3 className="text-3xl font-bold mb-10" data-aos="zoom-in">Profil Wilayah</h3>
  

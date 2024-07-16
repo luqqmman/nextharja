@@ -42,8 +42,9 @@ export default function EditArticle({ params }) {
     });
 
     if (res.ok) {
-      router.push('/');
+      router.push('/admin/article');
     } else {
+      alert('Error updating article');
       console.error('Error updating article');
     }
   };

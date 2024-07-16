@@ -30,7 +30,7 @@ export default function UmkmForm() {
       console.log('Article added successfully');
       setTitle('');
       setContent('');
-      router.push('/public');
+      router.push('/admin/umkm');
     } else {
       console.error(res);
     }

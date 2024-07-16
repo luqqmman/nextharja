@@ -23,20 +23,20 @@ export default function UmkmList() {
   }
 
   return (
-    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
+    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-8">
       {umkmList.map((umkm) => (
         <div key={umkm.id} className="bg-white shadow-md rounded hover:shadow-lg transition-shadow duration-300 mx-4 sm:mx-0">
           {umkm.imageUrl && (
-            <img src={umkm.imageUrl} alt={umkm.title} className="w-full h-48 object-cover" />
+            <img src={umkm.imageUrl} alt={umkm.title} className="w-full h-64 object-cover" />
           )}
           <div className="p-6">
             <h2 className="text-xl font-bold mb-2">{umkm.title}</h2>
-            <p className="text-gray-700 mb-4">{umkm.content.substring(0, 100)}...</p>
+            <p className="text-gray-700 mb-4">{umkm.content.substring(0, 200)}...</p>
             <Link 
                 href={`/public/umkm/${umkm.id}`}
                 className="text-blue-500 hover:text-blue-700 font-bold"
             >
-              Read More
+              Baca Selengkapnya
             </Link>
           </div>
         </div>

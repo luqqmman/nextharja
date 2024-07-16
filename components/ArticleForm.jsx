@@ -30,8 +30,12 @@ export default function ArticleForm() {
       console.log('Article added successfully');
       setTitle('');
       setContent('');
-      router.push('/');
+      setDate(false);
+      setImage(null);
+
+      router.push('/admin/article');
     } else {
+      alert(res);
       console.error(res);
     }
   };

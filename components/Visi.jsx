@@ -3,7 +3,7 @@ import React from 'react';
 const Visi = () => {
     return (
 
-<section className="py-8 flex items-center my-32 p-10">
+<section className="flex items-center my-32 py-10 px-4">
     <div className="container mx-auto text-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-8">
             <div className="bg-white shadow-lg rounded-lg px-8 py-6 hover:shadow-2xl transition-shadow duration-300 my-4" data-aos="fade-left">

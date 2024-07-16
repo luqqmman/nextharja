@@ -42,8 +42,9 @@ export default function EditUmkm({ params }) {
     });
 
     if (res.ok) {
-      router.push('/');
+      router.push('/admin/umkm');
     } else {
+      alert('Error updating umkm');
       console.error('Error updating umkm');
     }
   };
@@ -116,3 +117,4 @@ export default function EditUmkm({ params }) {
     </div>
   );
 }
+

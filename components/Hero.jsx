@@ -8,7 +8,7 @@ const Hero = () => {
     <div className="absolute inset-0 bg-gradient-to-r from-blue-800 to-blue-600 opacity-75"></div>
     <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center h-full relative z-10" data-aos="fade-up">
         <div>
-            <h1 className="text-5xl font-bold drop-shadow-md">DESA MEKARHARJA</h1>
+            <h1 className="text-4xl sm:text-5xl font-bold drop-shadow-md my-8">DESA MEKARHARJA</h1>
             <p className="mt-4 max-w-lg text-lg drop-shadow-md">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
             <button action="/public/#eksplorasi" className="mt-6 px-6 py-3 bg-yellow-500 text-blue-800 font-bold rounded shadow-lg hover:bg-yellow-400 transition duration-300">Selengkapnya</button>
         </div>
