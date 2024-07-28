@@ -22,7 +22,7 @@ const Nav = () => {
             <div className="hidden sm:flex">
                 <div className="flex space-x-4 p-3">
                     <Link href="/public" className="flex items-center">HOME</Link>
-                    <Link href="/public/articles" className="flex items-center">BERITA</Link>
+                    <Link href="/public/article" className="flex items-center">BERITA</Link>
                     <Link href="/public/umkm" className="flex items-center">UMKM</Link>
                 </div>
             </div>
@@ -56,7 +56,7 @@ const Nav = () => {
                                 </div>
                                 <div className="bg-blue-3">
                                     <Link 
-                                        href="/public/articles" 
+                                        href="/public/article" 
                                         className="text-sm hover:bg-gray-100 text-gray-700"
                                         onClick={() => setToggleDropdown(false)}
                                     >

@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
-export default function EditArticle({ params }) {
+export default function ArticleEdit({ params }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [date, setDate] = useState('');
   const [image, setImage] = useState(null);
   const [existingImage, setExistingImage] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { id } = params;
 
@@ -27,11 +29,13 @@ export default function EditArticle({ params }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
     formData.append('date', date);
+
     if (image) {
       formData.append('image', image);
     }
@@ -41,13 +45,21 @@ export default function EditArticle({ params }) {
       body: formData,
     });
 
+
     if (res.ok) {
+      setLoading(false);
       router.push('/admin/article');
     } else {
+      setLoading(false);
       alert('Error updating article');
       console.error('Error updating article');
     }
   };
+
+
+  if (!existingImage || loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container mx-auto w-full max-w-l">

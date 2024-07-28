@@ -2,22 +2,33 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
+import Pagination from '@/components/Pagination';
+import Card from '@/components/Card';
 
-import Loading from '@/components/Loading'
-
-export default function ArticleList() {
+export default function ArticleList({isAdmin}) {
   const [articles, setArticles] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const router = useRouter();
+
+  const articlesPerPage = 4;
+  const linkPrefix = '/public/article';
 
   useEffect(() => {
     async function fetchArticles() {
       const res = await fetch('/api/article');
       const data = await res.json();
       setArticles(data);
+      setTotalPages(Math.ceil(data.length / articlesPerPage));
     }
 
     fetchArticles();
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const handleDelete = async (id) => {
     const confirmed = confirm('Are you sure you want to delete this article?');
@@ -37,40 +48,35 @@ export default function ArticleList() {
   const handleEdit = (id) => {
     router.push(`/admin/edit-article/${id}`);
   };
+  
 
   if (!articles.length) {
     return <Loading />;
   }
 
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+
   return (
-    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-      {articles.map((article) => (
-        <div key={article.id} className="bg-white shadow-md rounded p-4 hover:shadow-lg transition-shadow duration-300 mx-4 sm:mx-0">
-          {article.imageUrl && (
-            <img src={article.imageUrl} alt={article.title} className="w-full h-48 object-cover" />
-          )}
-          <div className="p-6">
-            <h2 className="text-xl font-bold mb-2">{article.title}</h2>
-            <p className="text-gray-700 mb-4">{article.content.substring(0, 100)}...</p>
-            <div className="mt-2 flex space-x-2">
-              <button
-                onClick={() => handleEdit(article.id)}
-                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(article.id)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className="container mx-auto my-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {currentArticles.map((article) => (
+          <Card 
+            key={article.id} 
+            data={article} 
+            linkPrefix={linkPrefix}
+            isAdmin={isAdmin}
+            editHandler={handleEdit} 
+            deleteHandler={handleDelete}
+          />
+        ))}
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
-
-

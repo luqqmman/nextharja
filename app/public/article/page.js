@@ -1,10 +1,10 @@
-import ArticleListPublic from '@/components/ArticleListPublic';
+import ArticleList from "@/components/ArticleList";
 
 export default function ArticlesPage() {
   return (
-    <div className="mt-16 mb-28">
+    <div className="mx-2 sm:mx-12 md:mx-28 my-16">
       <h1 className="text-4xl font-bold text-center my-10">Berita Desa</h1>
-      <ArticleListPublic />
+      <ArticleList isAdmin={false}/>
     </div>
   );
 }

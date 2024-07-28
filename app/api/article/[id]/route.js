@@ -1,24 +1,47 @@
 import { NextResponse } from 'next/server';
 import db from '@/app/lib/firebase';
+import getValue from '@/app/lib/getValue';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { revalidateTag } from 'next/cache';
 
 
-export async function GET(req, {params}) {
-    const id = params.id;
-    try {
-        const docRef = doc(db, 'articles', id);
-        const docSnap = await getDoc(docRef);
+export async function GET(req, { params }) {
+  const id = params.id;
+  const projectId = process.env.FIREBASE_PROJECT_ID;  // Ganti dengan project ID Firebase Anda
+  const apiKey = process.env.FIREBASE_PROJECT_ID;  // Ganti dengan API key Firebase Anda
+  const collection = 'articles';  // Ganti dengan nama koleksi Firestore Anda
+  const url = `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/${collection}/${id}?key=${apiKey}`;
 
-        if (docSnap.exists()) {
-            return NextResponse.json({ id: docSnap.id, ...docSnap.data() }, { status: 200 });
-        } else {
-            return NextResponse.json({ error: 'Document not found' }, { status: 404 });
-        }
-    } catch (e) {
-        return NextResponse.json({ error: 'Error getting document: ' + e.message }, { status: 400 });
-    }
+  try {
+      const response = await fetch(url, {
+        next: {
+          revalidate: 3600,
+          tags: [id],
+        },
+      });
+      
+      if (!response.ok) {
+          if (response.status === 404) {
+              return NextResponse.json({ error: 'Document not found' }, { status: 404 });
+          }
+          throw new Error(`Error fetching document: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      const document = getValue(data.fields);
+
+      return NextResponse.json({
+          id: data.name.split('/').pop(),
+          ...document
+      }, {
+          status: 200,
+      });
+  } catch (e) {
+      return NextResponse.json({ error: 'Error getting document: ' + e.message }, { status: 400 });
+  }
 }
+
 
 export async function PUT(req, {params}) {
     const { searchParams } = new URL(req.url);
@@ -55,10 +78,11 @@ export async function PUT(req, {params}) {
         imageUrl,
         updatedAt: new Date(),
       });
-  
+
+      revalidateTag('articles');
+      revalidateTag(id);
       return NextResponse.json({ id }, { status: 200 });
     } catch (e) {
-        console.log(e.message)
       return NextResponse.json({ error: 'Error updating document: ' + e.message }, { status: 400 });
     }
   }
@@ -80,6 +104,8 @@ export async function PUT(req, {params}) {
   
       await deleteDoc(docRef);
   
+      revalidateTag('articles');
+      revalidateTag(id);
       return NextResponse.json({ id }, { status: 200 });
     } catch (e) {
       return NextResponse.json({ error: 'Error deleting document: ' + e.message }, { status: 400 });

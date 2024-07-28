@@ -1,17 +1,20 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading'
 
 export default function UmkmForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [address, setAddress] = useState('');
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
   
     const formData = new FormData();
     formData.append('title', title);
@@ -27,18 +30,22 @@ export default function UmkmForm() {
     });
 
     if (res.ok) {
+      setLoading(false);
       console.log('Article added successfully');
       setTitle('');
       setContent('');
       router.push('/admin/umkm');
     } else {
+      setLoading(false);
       console.error(res);
     }
   };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
-
-
     <div className="container mx-auto my-10 w-full max-w-l">
         <form className="px-10 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <h1 className="text-3xl font-bold">UMKM Baru</h1>

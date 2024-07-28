@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import UmkmList  from "@/components/UmkmList";
-
+import UmkmList from "@/components/UmkmList";
 
 export default function Admin() {
     return (
@@ -15,7 +14,7 @@ export default function Admin() {
                             Tambah UMKM
                         </Link>
                     </button>
-                    <UmkmList />
+                    <UmkmList isAdmin={true} />
                 </div>
             </div>
         </>

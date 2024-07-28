@@ -1,9 +1,9 @@
-import EditArticle from '@/components/EditArticle';
+import ArticleEdit from "@/components/ArticleEdit";
 
 export default function EditArticlePage({ params }) {
   return (
     <div className="container mx-auto my-10">
-      <EditArticle params={params} />
+      <ArticleEdit params={params} />
     </div>
   );
 }

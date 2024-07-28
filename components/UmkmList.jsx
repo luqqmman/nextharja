@@ -2,22 +2,34 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
+import Pagination from '@/components/Pagination';
+import Card from '@/components/Card';
 
-import Loading from '@/components/Loading'
-
-export default function umkmList() {
-  const [umkmList, setumkmList] = useState([]);
+export default function UmkmList({ isAdmin }) {
+  const [umkmList, setUmkmList] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const router = useRouter();
 
+  const umkmsPerPage = 4;
+  const linkPrefix = '/public/umkm';
+
+
   useEffect(() => {
-    async function fetchumkmList() {
+    async function fetchUmkm() {
       const res = await fetch('/api/umkm');
       const data = await res.json();
-      setumkmList(data);
+      setUmkmList(data);
+      setTotalPages(Math.ceil(data.length / umkmsPerPage));
     }
 
-    fetchumkmList();
+    fetchUmkm();
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const handleDelete = async (id) => {
     const confirmed = confirm('Are you sure you want to delete this umkm?');
@@ -27,7 +39,7 @@ export default function umkmList() {
       });
 
       if (res.ok) {
-        setumkmList(umkmList.filter(umkm => umkm.id !== id));
+        setUmkmList(umkmList.filter(umkm => umkm.id !== id));
       } else {
         console.error('Error deleting umkm');
       }
@@ -37,40 +49,34 @@ export default function umkmList() {
   const handleEdit = (id) => {
     router.push(`/admin/edit-umkm/${id}`);
   };
-
+  
   if (!umkmList.length) {
     return <Loading />;
   }
 
+  const indexOfLastUmkm = currentPage * umkmsPerPage;
+  const indexOfFirstUmkm = indexOfLastUmkm - umkmsPerPage;
+  const currentUmkms = umkmList.slice(indexOfFirstUmkm, indexOfLastUmkm);
+
   return (
-    <div className="container mx-auto my-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
-      {umkmList.map((umkm) => (
-        <div key={umkm.id} className="bg-white shadow-md rounded p-4 hover:shadow-lg transition-shadow duration-300 mx-4 sm:mx-0">
-          {umkm.imageUrl && (
-            <img src={umkm.imageUrl} alt={umkm.title} className="w-full h-48 object-cover" />
-          )}
-          <div className="p-6">
-            <h2 className="text-xl font-bold mb-2">{umkm.title}</h2>
-            <p className="text-gray-700 mb-4">{umkm.content.substring(0, 100)}...</p>
-            <div className="mt-2 flex space-x-2">
-              <button
-                onClick={() => handleEdit(umkm.id)}
-                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(umkm.id)}
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              >
-                Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className="container mx-auto my-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        {currentUmkms.map((umkm) => (
+          <Card 
+            key={umkm.id} 
+            data={umkm} 
+            linkPrefix={linkPrefix}
+            isAdmin={isAdmin}
+            editHandler={handleEdit} 
+            deleteHandler={handleDelete}
+          />
+        ))}
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }
-
-

@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
-export default function EditUmkm({ params }) {
+export default function UmkmEdit({ params }) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [address, setAddress] = useState('');
   const [image, setImage] = useState(null);
   const [existingImage, setExistingImage] = useState('');
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { id } = params;
 
@@ -27,6 +29,7 @@ export default function EditUmkm({ params }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData();
     formData.append('title', title);
@@ -42,12 +45,18 @@ export default function EditUmkm({ params }) {
     });
 
     if (res.ok) {
+      setLoading(false);
       router.push('/admin/umkm');
     } else {
+      setLoading(false);
       alert('Error updating umkm');
       console.error('Error updating umkm');
     }
   };
+
+  if (!existingImage || loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="container mx-auto w-full max-w-l">

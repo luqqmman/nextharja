@@ -1,9 +1,9 @@
 
 export default function Wilayah() {
     return (
-    <div className="container mx-auto my-10">
+    <div className="mx-2 sm:mx-12 md:mx-28 my-16">
         <div className="container mx-auto my-10 bg-white shadow-md rounded p-10 hover:shadow-lg transition-shadow duration-300">
-        <div className="bg-white overflow-hidden">
+        <div className="bg-white overflow-auto">
                     <iframe 
                         className="w-full h-96"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31656.539960191367!2d108.5508532662642!3d-7.346317966546558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f62ff6d6aaf75%3A0xa19ef8d460db3fa1!2sMekarharja%2C%20Purwaharja%2C%20Banjar%20City%2C%20West%20Java!5e0!3m2!1sen!2sid!4v1720666193590!5m2!1sen!2sid"
@@ -129,8 +129,8 @@ export default function Wilayah() {
                         <td class="border border-gray-300 px-4 py-2">RT 20</td>
                     </tr>
                     <tr>
-                        <td class="border border-gray-300 px-4 py-2" rowspan="7">3</td>
-                        <td class="border border-gray-300 px-4 py-2" rowspan="7">Pasirleutik</td>
+                        <td class="border border-gray-300 px-4 py-2" rowspan="8">3</td>
+                        <td class="border border-gray-300 px-4 py-2" rowspan="8">Pasirleutik</td>
                         <td class="border border-gray-300 px-4 py-2">RW 10</td>
                         <td class="border border-gray-300 px-4 py-2">RT 24</td>
                     </tr>
@@ -157,6 +157,10 @@ export default function Wilayah() {
                     <tr>
                         <td class="border border-gray-300 px-4 py-2">RW 12</td>
                         <td class="border border-gray-300 px-4 py-2">RT 30</td>
+                    </tr>
+                    <tr>
+                        <td class="border border-gray-300 px-4 py-2"></td>
+                        <td class="border border-gray-300 px-4 py-2">RT 31</td>
                     </tr>
                 </tbody>
             </table>

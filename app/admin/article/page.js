@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import ArticleList  from "@/components/ArticleList";
-
+import ArticleList from "@/components/ArticleList";
 
 export default function Admin() {
     return (
@@ -15,7 +14,7 @@ export default function Admin() {
                             Tambah Dokumentasi
                         </Link>
                     </button>
-                    <ArticleList />
+                    <ArticleList isAdmin={true} />
                 </div>
             </div>
         </>

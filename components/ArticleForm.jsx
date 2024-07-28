@@ -1,22 +1,26 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Loading from '@/components/Loading';
 
 export default function ArticleForm() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [date, setDate] = useState(false);
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
   
     const formData = new FormData();
     formData.append('title', title);
     formData.append('content', content);
     formData.append('date', date);
+    
     if (image) {
       formData.append('image', image);
     }
@@ -27,22 +31,21 @@ export default function ArticleForm() {
     });
 
     if (res.ok) {
+      setLoading(false);
       console.log('Article added successfully');
-      setTitle('');
-      setContent('');
-      setDate(false);
-      setImage(null);
-
       router.push('/admin/article');
     } else {
+      setLoading(false);
       alert(res);
       console.error(res);
     }
   };
 
+  if (loading) {
+    return <Loading />
+  }
+
   return (
-
-
     <div className="container mx-auto my-10 w-full max-w-l">
         <form className="px-10 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <h1 className="text-3xl font-bold">Dokumentasi Baru</h1>
