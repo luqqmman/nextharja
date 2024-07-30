@@ -35,6 +35,7 @@ const VisiMisi = () => {
                     </div>
                 </div>
             </div>
+            {/* Mobile view Section */}
             <div className="container mx-auto text-center md:hidden">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="bg-white shadow-lg rounded-lg px-8 py-6 hover:shadow-2xl transition-shadow duration-300" data-aos="zoom-in">

@@ -29,6 +29,15 @@ body {
   background-position: center 10%; /* Center the background image */
 }
 
+@media only screen and (max-width: 640px) {
+  .hero-section {
+    background-image: linear-gradient(to bottom, rgba(30, 64, 175, 0.5) 0 20%, rgba(30, 64, 175, 0.95)), url('/sawah2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center; /* Center the background image */
+  }
+}
+
 .struktur-section {
   position: relative;
   overflow: hidden;

@@ -29,7 +29,7 @@ const StrukturDesa = () => {
   useEffect(() => {
     // Fungsi untuk memeriksa ukuran jendela
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 720); // 1024px adalah breakpoint untuk ukuran layar desktop
+      setIsMobile(window.innerWidth < 1040); // 1024px adalah breakpoint untuk ukuran layar desktop
     };
 
     // Setel event listener untuk perubahan ukuran jendela
@@ -77,7 +77,7 @@ const StrukturDesa = () => {
   };
 
   return (
-    <section className="struktur-section bg-gray-100 flex items-center my-32 px-10 py-16">
+    <section className="struktur-section bg-gray-100 flex items-center my-32 px-10 py-28 md:py-16">
       <div className="container flex flex-col mx-auto items-center text-center parallax-content">
         <h3 className="text-gray-100 text-3xl font-bold mb-10 text-black" data-aos="zoom-in">Perangkat Desa</h3>
 

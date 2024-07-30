@@ -24,6 +24,8 @@ const Nav = () => {
                     <Link href="/public" className="flex items-center">HOME</Link>
                     <Link href="/public/article" className="flex items-center">BERITA</Link>
                     <Link href="/public/umkm" className="flex items-center">UMKM</Link>
+                    <Link href="/public/bumdes" className="flex items-center">BUMDES</Link>
+                    <Link href="/public/gallery" className="flex items-center">GALLERY</Link>
                 </div>
             </div>
 
