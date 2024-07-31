@@ -11,16 +11,16 @@ const Footer = () => {
                     <p>Kota Banjar</p>
                 </div>
                 <div className="flex space-x-6 mb-4 md:mb-0">
-                    <Link href="https://www.facebook.com" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
+                    <Link href="https://www.facebook.com/desamekarharja?mibextid=FqQbvRVe40gbju2b" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
                         <FaFacebookF size={24} />
                     </Link>
                     <Link href="https://www.twitter.com" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
                         <FaTwitter size={24} />
                     </Link>
-                    <Link href="https://www.instagram.com" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
+                    <Link href="https://www.instagram.com/desamekarharja12?igsh=MWNmOWkyaWJiYTJzZA==" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
                         <FaInstagram size={24} />
                     </Link>
-                    <Link href="https://www.youtube.com" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
+                    <Link href="https://youtube.com/@desamekarharjaku?si=t4xsTkDD9X9Zk2y-" target="_blank" className="text-white hover:text-yellow-500 transition duration-300">
                         <FaYoutube size={24} />
                     </Link>
                 </div>
