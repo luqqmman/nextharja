@@ -2,7 +2,12 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google";
 
 const authorizedEmail = [
-    "luqqmmanhakim@apps.ipb.ac.id"
+    "luqqmmanhakim@apps.ipb.ac.id",
+    "hakim.luqman.muhammad@gmail.com",
+    "desamekarharja12@gmail.com",
+    "networkbmp@gmail.com"
+
+
 ]
 
 const handler = NextAuth({

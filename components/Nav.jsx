@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 
 const Nav = () => {
@@ -25,58 +26,73 @@ const Nav = () => {
                     <Link href="/public/article" className="flex items-center">BERITA</Link>
                     <Link href="/public/umkm" className="flex items-center">UMKM</Link>
                     <Link href="/public/bumdes" className="flex items-center">BUMDES</Link>
-                    <Link href="/public/gallery" className="flex items-center">GALLERY</Link>
+                    <Link href="/public/gallery" className="flex items-center">GALERI</Link>
                 </div>
             </div>
-
+            
             {/* Mobile nav */}
             <div className="sm:hidden flex">
                 <div className="flex space-x-4 relative">
-                    <button 
-                        class="flex items-center text-blue-100 p-3"
+                    <button
+                        className="text-gray-200 flex items-center text-blue-600 p-3 transition-transform transform hover:scale-110"
                         onClick={() => setToggleDropdown((prev) => !prev)} 
                     >
-                        <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <title>Mobile menu</title>
-                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                        </svg>
+                        {toggleDropdown ? <FaTimes className="block h-6 w-6" /> : <FaBars className="block h-6 w-6" />}
                     </button>
-                
-                    {
-                        toggleDropdown && (
-                            <div 
-                                onClick={() => setToggleDropdown(false)}
-                                className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-md rounded hover:shadow-lg transition-shadow duration-300 mx-4 p-4 text-black font-bold">
-                                <div className="bg-blue-3">
-                                    <Link 
-                                        href="/public" 
-                                        className="text-sm hover:bg-gray-100 text-gray-700"
-                                        onClick={() => setToggleDropdown(false)}
-                                    >
-                                        Beranda
-                                    </Link>
-                                </div>
-                                <div className="bg-blue-3">
-                                    <Link 
-                                        href="/public/article" 
-                                        className="text-sm hover:bg-gray-100 text-gray-700"
-                                        onClick={() => setToggleDropdown(false)}
-                                    >
-                                        Berita
-                                    </Link>
-                                </div>
-                                <div className="bg-blue-3">
-                                    <Link 
-                                        href="/public/umkm" 
-                                        className="text-sm hover:bg-gray-100 text-gray-700"
-                                        onClick={() => setToggleDropdown(false)}
-                                    >
-                                        UMKM
-                                    </Link>
-                                </div>
+
+                    {toggleDropdown && (
+                        <div 
+                            onClick={() => setToggleDropdown(false)}
+                            className="absolute right-0 z-10 top-12 mt-2 w-56 origin-top-right rounded-md bg-white shadow-md hover:shadow-lg transition-shadow duration-300 mx-4 text-black font-bold"
+                            data-aos="zoom-in"
+                        >
+                            <div className="bg-blue-3 p-1 border-b border-gray-200">
+                                <Link 
+                                    href="/public" 
+                                    className="text-sm hover:bg-gray-100 text-gray-700 block p-2"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    BERANDA
+                                </Link>
                             </div>
-                        )
-                    }
+                            <div className="bg-blue-3 p-1 border-b border-gray-200">
+                                <Link 
+                                    href="/public/article" 
+                                    className="text-sm hover:bg-gray-100 text-gray-700 block p-2"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    BERITA
+                                </Link>
+                            </div>
+                            <div className="bg-blue-3 p-1">
+                                <Link 
+                                    href="/public/umkm" 
+                                    className="text-sm hover:bg-gray-100 text-gray-700 block p-2"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    UMKM
+                                </Link>
+                            </div>
+                            <div className="bg-blue-3 p-1">
+                                <Link 
+                                    href="/public/bumdes" 
+                                    className="text-sm hover:bg-gray-100 text-gray-700 block p-2"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    BUMDES
+                                </Link>
+                            </div>
+                            <div className="bg-blue-3 p-1">
+                                <Link 
+                                    href="/public/gallery" 
+                                    className="text-sm hover:bg-gray-100 text-gray-700 block p-2"
+                                    onClick={() => setToggleDropdown(false)}
+                                >
+                                    GALERI
+                                </Link>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
